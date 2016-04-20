@@ -1,0 +1,60 @@
+.container
+	.row
+		//- 网站标题
+		.page-header.clearfix
+			h1 #{title}
+			.col-md-4
+				small 重度电影迷
+			.col-md-8
+				form(method='GET',action='/results')
+					.input-group.col-md-4.pull-right
+						input.form-control(type="text",name="qsearch")
+						span.input-group-btn
+							button.btn.btn-default(type="submit") 搜索
+//- 登录注册
+.navbar.navbar-default.navbar-fixed-bottom
+	.container
+		.narbar-header
+			a.navbar-brand(href="/") 重度电影迷
+		if user
+			p.navbar-text.navbar-right
+				span Hans欢迎您,#{user.name}
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="/logout") 登出
+		else
+			p.navbar-text.navbar-right
+				a.navbar-link(href="#",data-toggle="modal",data-target="#signUpModal") 注册
+				span &nbsp;|&nbsp;
+				a.navbar-link(href="#",data-toggle="modal",data-target="#loginModal") 登录
+//- 注册模态框
+#signUpModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST",action="/user/signup")
+				.modal-header 注册
+				.modal-body
+					.form-group
+						label(for="signUpName") 用户名
+						input#signUpName.form-control(name="user[name]",type="text")
+					.form-group
+						label(for="signUpPassword") 密码
+						input#signUpPassword.form-control(name="user[password]",type="text")
+					.modal-footer
+						button.btn.btn-primary(type="button",data-dismiss="modal") 关闭
+						button.btn.btn-success(type="submit") 提交
+//- 登录模态框
+#loginModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST",action="/user/login")
+				.modal-header 登录
+				.modal-body
+					.form-group
+						label(for="loginName") 用户名
+						input#loginName.form-control(name="user[name]",type="text")
+					.form-group
+						label(for="loginPassword") 密码
+						input#loginPassword.form-control(name="user[password]",type="text")
+					.modal-footer
+						button.btn.btn-primary(type="button",data-dismiss="modal") 关闭
+						button.btn.btn-success(type="submit") 提交

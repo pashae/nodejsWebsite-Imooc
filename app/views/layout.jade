@@ -1,0 +1,12 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		title #{title}
+		//- 引入样式文件
+		include ./includes/head
+	body
+		//- logo等
+		include ./includes/header
+		//- 页面的主要内容
+		block content
